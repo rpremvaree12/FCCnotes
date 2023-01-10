@@ -69,23 +69,27 @@ function convertToRoman(num) {
 
 ```javascript
 function telephoneCheck(str) {
-  let regex = /\D/gi   // \D finds all non digits
-  // console.log(str.match(regex))
-  let regexParenthesis = /\([^)]*\)|\[[^\]]*\]/
-  if(str.match(regexParenthesis) != null && str[0] == "(" || str[0]==1){
-    console.log("matching () found")
-    console.log(str.match(regexParenthesis))
-    return str.match(regexParenthesis)[0].length == 5
-  }else if(!/\)/.test(str)){
-    console.log("no parenthesis found")
-    let cleaned = str.replace(regex,"");
-    console.log("cleaned "+cleaned);
-    return cleaned.length == 10 || cleaned.length ==11
-  }else{
-    return false
+  const validPatterns = [
+    /^\d{3}-\d{3}-\d{4}$/,
+    /^\(\d{3}\)\d{3}-\d{4}$/,
+    /^\(\d{3}\) \d{3}-\d{4}$/,
+    /^\d{3} \d{3} \d{4}$/,
+    /^\d{10}$/,
+    /^1 \(\d{3}\) \d{3} \d{4}$/,
+    /^1 \d{3}-\d{3}-\d{4}$/,
+    /^1 \(\d{3}\) \d{3}-\d{4}$/,
+    /^1\(\d{3}\)\d{3}-\d{4}$/,
+    /^1 \d{3} \d{3} \d{4}$/
+  ]
+  for(let i in validPatterns){
+    if(validPatterns[i].test(str)){
+      console.log(validPatterns[i]);
+      return true;
+    }
   }
-
-  }
+  // if str doesn't match anything in the regex array, then it's not valid
+  return false
+}
 ```
 
 ## cash register
