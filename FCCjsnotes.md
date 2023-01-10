@@ -118,13 +118,13 @@ lazy - find shorterest
 
 $ search for at end of the string
 
-\w is the shortcut for [A-Za-z0-9_] all letters, numbers and underscore
+\w is word characters, the shortcut for [A-Za-z0-9_] all letters, numbers and underscore but not symbols
 
-\W is opposite of \w
+\W (non word characters), the opposite of \w ex: symbols !@#$%, etc.
 
-\d is all numbers
+\d is all digits
 
-\D is opposite of \d including whitespace
+\D is all non-digit including opposite of \d including underscores
 
 
 ## string methods
