@@ -87,3 +87,44 @@ function telephoneCheck(str) {
 
   }
 ```
+
+## cash register
+
+```javascript
+function checkCashRegister(price, cash, cid) {
+  let change = {
+    status: "",
+    change: []
+  };
+
+  // find total in cash drawer
+  let totalcid = 0;
+  for(let i in cid){
+    totalcid += cid[i][1]
+  }
+  totalcid = totalcid.toFixed(2)
+  console.log("total in drawer "+totalcid)
+
+  // change needed
+  let changeNeeded = cash - price;
+  console.log(changeNeeded)
+
+  // check if changed needed is more than cid or cannot give exact change
+  if( changeNeeded > totalcid){
+    change.status = "INSUFFICIENT_FUNDS";
+  }else if(changeNeeded == totalcid){
+    change.status = "CLOSED";
+    change.change = cid;
+  }else{
+    change.status = "OPEN"
+    // make change
+    cid.reverse()
+    for(let i in cid){
+      console.log(cid[i])
+      if(changeNeeded - cid[i] >= 0){
+        change["change"].push(cid)
+      }
+    }
+  }
+  return change
+}```
