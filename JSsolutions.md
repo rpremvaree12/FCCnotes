@@ -1,15 +1,19 @@
 ## palindrome checker
 
 ```javascript
-function palindrome(str) {
-  let reversed = str.toLowerCase().split(' ').reverse().join('')
-  console.log
-  return reversed === str;
+function palindrome(str){
+  let regex = /[_\W]/gi; //match all underscores and non-word characters (symbols)
+  console.log(str.match(regex))
+  let cleaned = str.replace(regex,"").toLowerCase();
+  let reversed = cleaned.split('').reverse().join('')
+  console.log("cleaned: "+cleaned)
+  console.log("reversed: "+reversed)
+  return reversed === cleaned;
 }
-
-console.log(palindrome(""));
 ```
-# Caesar Cipher
+
+## Caesar Cipher
+
 ```javascript
 function rot13(str) {
   let alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -65,22 +69,21 @@ function convertToRoman(num) {
 
 ```javascript
 function telephoneCheck(str) {
-  // \D finds all non digits
-  let regex = /\D/gi
-
-//.    \([^)]*\)|\[[^\]]*\] finds matching parenthesis
-  let unwanted = str.match(regex)
-  console.log("unwanted " + unwanted)
-  let cleaned = str.replace(regex,"");
-  console.log("cleaned " + cleaned)
-
-  
-  if(cleaned.length == 11 && cleaned[0] == 1){
-    return /^\d+$/.test(cleaned);
-  }else if(cleaned.length == 10){
-    return /^\d+$/.test(cleaned);
+  let regex = /\D/gi   // \D finds all non digits
+  // console.log(str.match(regex))
+  let regexParenthesis = /\([^)]*\)|\[[^\]]*\]/
+  if(str.match(regexParenthesis) != null && str[0] == "(" || str[0]==1){
+    console.log("matching () found")
+    console.log(str.match(regexParenthesis))
+    return str.match(regexParenthesis)[0].length == 5
+  }else if(!/\)/.test(str)){
+    console.log("no parenthesis found")
+    let cleaned = str.replace(regex,"");
+    console.log("cleaned "+cleaned);
+    return cleaned.length == 10 || cleaned.length ==11
   }else{
-    return false;
+    return false
   }
-}
+
+  }
 ```
