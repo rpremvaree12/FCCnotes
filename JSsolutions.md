@@ -101,7 +101,7 @@ function checkCashRegister(price, cash, cid) {
     change: []
   };
 
-  const VALUES ={
+  const DENOMVALUES ={
     "ONE HUNDRED": 100,
     "TWENTY": 20,
     "TEN": 10,
@@ -134,14 +134,20 @@ function checkCashRegister(price, cash, cid) {
     // make change
     cid.reverse()
 
-    for(let i in VALUES){
-      if() >= 0){
-        console.log(cid[i][1]) // value in each denomination
+    for(let d in DENOMVALUES){
+      if((changeNeeded / DENOMVALUES[d]) >= 1){
+        console.log(d)
+        let numBills = Math.floor(changeNeeded / DENOMVALUES[d]) // value in each denomination
 
-        change["change"].push() // add amount to change object
+        // FIX check for number of bills in CID
+
+
+        change["change"].push([d,DENOMVALUES[d]*numBills]) // add amount to change object
+
+        changeNeeded -= DENOMVALUES[d]*numBills
       }
     }
   }
-  return change["change"]
+  return change
 }
 }```
