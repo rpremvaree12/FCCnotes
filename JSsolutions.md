@@ -101,6 +101,17 @@ function checkCashRegister(price, cash, cid) {
     change: []
   };
 
+  const VALUES ={
+    "ONE HUNDRED": 100,
+    "TWENTY": 20,
+    "TEN": 10,
+    "FIVE": 5,
+    "ONE": 1,
+    "QUARTER": 0.25,
+    "DIME": 0.10,
+    "PENNY": 0.01
+  }
+
   // find total in cash drawer
   let totalcid = 0;
   for(let i in cid){
@@ -111,7 +122,6 @@ function checkCashRegister(price, cash, cid) {
 
   // change needed
   let changeNeeded = cash - price;
-  console.log(changeNeeded)
 
   // check if changed needed is more than cid or cannot give exact change
   if( changeNeeded > totalcid){
@@ -123,12 +133,15 @@ function checkCashRegister(price, cash, cid) {
     change.status = "OPEN"
     // make change
     cid.reverse()
-    for(let i in cid){
-      console.log(cid[i])
-      if(changeNeeded - cid[i] >= 0){
-        change["change"].push(cid)
+
+    for(let i in VALUES){
+      if() >= 0){
+        console.log(cid[i][1]) // value in each denomination
+
+        change["change"].push() // add amount to change object
       }
     }
   }
-  return change
+  return change["change"]
+}
 }```
