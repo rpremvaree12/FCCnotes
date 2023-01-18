@@ -178,4 +178,4 @@ function checkCashRegister(price, cash, cid) {
   }
   return change
 }
-}```
+```
