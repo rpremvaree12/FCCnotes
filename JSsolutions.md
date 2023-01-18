@@ -131,20 +131,43 @@ function checkCashRegister(price, cash, cid) {
     change.change = cid;
   }else{
     change.status = "OPEN"
-    // make change
+    // make change algorithm
+    // start from highest denom first
     cid.reverse()
+
+    // determine the number of bills needed per denomination
+    // d is the denom DENOMVALUES[d] is the value of each denom
 
     for(let d in DENOMVALUES){
       if((changeNeeded / DENOMVALUES[d]) >= 1){
-        console.log(d)
-        let numBills = Math.floor(changeNeeded / DENOMVALUES[d]) // value in each denomination
+        // value in each denomination
+        let numBillsNeeded = Math.floor(changeNeeded / DENOMVALUES[d]) 
+        console.log("numBillsNeeded: "+numBillsNeeded+" "+d)
+        // check for number of bills in CID
+        for(let i in cid){
+          if(cid[i][0] == d){
 
-        // FIX check for number of bills in CID
+            let numBillsAvail = Math.floor(cid[i][1]/DENOMVALUES[d]);
+            console.log("numBillsAvail: "+numBillsAvail+" "+d);
+
+            if((numBillsAvail - numBillsNeeded) >= 0){
+              // add the denomination and value * number of bills to change object
+              change["change"].push([d,DENOMVALUES[d]*numBillsNeeded]) 
+              changeNeeded -= DENOMVALUES[d]*numBillsNeeded
+            }else{
+              change["change"].push([d,DENOMVALUES[d]*numBillsAvail]) 
+              changeNeeded -= DENOMVALUES[d]*numBillsAvail
+            }
+              changeNeeded = changeNeeded.toFixed(2)
+              console.log(change["change"])
+              console.log("changeNeeded: "+changeNeeded) 
+            if(changeNeeded <= 0){
+                break
+            }
+          }
+        }
 
 
-        change["change"].push([d,DENOMVALUES[d]*numBills]) // add amount to change object
-
-        changeNeeded -= DENOMVALUES[d]*numBills
       }
     }
   }
