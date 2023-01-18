@@ -151,12 +151,17 @@ function checkCashRegister(price, cash, cid) {
             console.log("numBillsAvail: "+numBillsAvail+" "+d);
 
             if((numBillsAvail - numBillsNeeded) >= 0){
+              console.log("has more avail or just enough")
               // add the denomination and value * number of bills to change object
               change["change"].push([d,DENOMVALUES[d]*numBillsNeeded]) 
               changeNeeded -= DENOMVALUES[d]*numBillsNeeded
-            }else{
+            }else if(numBillsAvail != 0){
+              console.log(numBillsAvail - numBillsNeeded)
               change["change"].push([d,DENOMVALUES[d]*numBillsAvail]) 
               changeNeeded -= DENOMVALUES[d]*numBillsAvail
+            }
+            else{
+              continue
             }
               changeNeeded = changeNeeded.toFixed(2)
               console.log(change["change"])
