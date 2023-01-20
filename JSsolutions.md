@@ -129,6 +129,7 @@ function checkCashRegister(price, cash, cid) {
   }else if(changeNeeded == totalcid){
     change.status = "CLOSED";
     change.change = cid;
+    return change
   }else{
     change.status = "OPEN"
     // make change algorithm
@@ -150,18 +151,17 @@ function checkCashRegister(price, cash, cid) {
             let numBillsAvail = Math.floor(cid[i][1]/DENOMVALUES[d]);
             console.log("numBillsAvail: "+numBillsAvail+" "+d);
 
-            if((numBillsAvail - numBillsNeeded) >= 0){
+            if(numBillsAvail == 0){
+              continue
+            }else if((numBillsAvail - numBillsNeeded) >= 0){
               console.log("has more avail or just enough")
               // add the denomination and value * number of bills to change object
               change["change"].push([d,DENOMVALUES[d]*numBillsNeeded]) 
               changeNeeded -= DENOMVALUES[d]*numBillsNeeded
-            }else if(numBillsAvail != 0){
+            }else{
               console.log(numBillsAvail - numBillsNeeded)
               change["change"].push([d,DENOMVALUES[d]*numBillsAvail]) 
               changeNeeded -= DENOMVALUES[d]*numBillsAvail
-            }
-            else{
-              continue
             }
               changeNeeded = changeNeeded.toFixed(2)
               console.log(change["change"])
@@ -175,6 +175,10 @@ function checkCashRegister(price, cash, cid) {
 
       }
     }
+  }
+  if(changeNeeded > 0){
+    change.status = "INSUFFICIENT_FUNDS"
+    change["change"] = []
   }
   return change
 }
