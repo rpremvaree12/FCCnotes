@@ -12,35 +12,43 @@
       <section>
         <form id="survey-form" action="SUBMIT_URL">
 
-          <label for="name" id="name-label">Name:
+          <label for="name" id="name-label">Name:</label>
             <input id="name" name="name" type="text" placeholder="Enter Your Name" required>
-          </label>
 
-          <label for="email" id="email-label">Email:
+
+          <label for="email" id="email-label">Email:</label>
             <input id="email" name="email" type="email" placeholder="Enter Your Email" required>
-          </label>
 
-          <label for="age" id="number-label">Age (optional):
+
+          <label for="age" id="number-label">Age (optional):</label>
             <input id="number" name="age" type="number" min="10" max="65" placeholder="10">
-          </label>
 
-          <label for="dropdown" id="dropdown"> Which option best describes you?:
-            <select>
-              <option value="option1"> Option 1 </select>
-              <option value="option2"> Option 2 </select>
+
+          <label for="dropdown" id="dropdown-label">Which option best describes you?:</label>
+            <select id="dropdown">
+                <option name="dropdown" value="option1"> Option 1 </option>
+                <option name="dropdown" value="option2"> Option 2 </option>
+                <option name="dropdown" value="option3"> Option 3 </option>
             </select>
-          </label>
 
-          <label for="radio"> Would you recommend FCC to a friend?
-            <input type="radio" name="recommend" value="definitely"> Definitely
-            <input type="radio" name="recommend" value="maybe"> Maybe
-            <input type="radio" name="recommend" value="notsure"> Not sure
-         </label>
+        <fieldset>
+          <p id="recommend-label"> Would you recommend FCC to a friend?</p> 
+            <input id="definitely" type="radio" name="recommend" value="definitely"> <label for="definitely">Definitely</label>
+            <input id="maybe" type="radio" name="recommend" value="maybe">  <label for="maybe">Maybe</label>
+            <input id="maybe" type="radio" name="recommend" value="notsure">  <label for="notsure">Not Sure</label>
+        </fieldset>
 
-          <label>
-            <textarea>
+        <fieldset>
+            <p>What would you like to see improved?</p>
+            <input type="checkbox" name="improved" id="frontend" value="frontend"><label for="frontend">Front End</label>
+            <input type="checkbox" name="improved" id="backend" value="backend"><label for="backend">Back End</label>
+            <input type="checkbox" name="improved" id="everything" value="everything"><label for="everything">Everything</label>
+            <input type="checkbox" name="improved" id="nothing" value="nothing"><label for="nothing">Nothing</label>
+        </fieldset>
+
+          <label for="comments" id="textarea-label"">Additional Comments?</label>
+            <textarea id="comments" cols="20" rows="20">
             </textarea>
-          </label>
 
             <input id="submit" type="submit">
 
