@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <h1 id="title">freeCodeCamp Survey Form</h1>
+      <p id="description">This is a survey form for ... </p>
+
+      <section>
+        <form id="survey-form" action="/formreuslts.html">
+            <fieldset>
+                <label for="name" id="name-label">Name:</label>
+                <input id="name" name="name" type="text" placeholder="Enter Your Name" required>
+
+
+                <label for="email" id="email-label">Email:</label>
+                <input id="email" name="email" type="email" placeholder="Enter Your Email" required>
+                
+                <label for="age" id="number-label">Age (optional):</label>
+                <input id="number" name="age" type="number" min="10" max="65" placeholder="10">
+
+            </fieldset>
+
+          <label for="dropdown" id="dropdown-label">Which option best describes you?:</label>
+            <select id="dropdown">
+                <option name="dropdown" value="option1"> Option 1 </option>
+                <option name="dropdown" value="option2"> Option 2 </option>
+                <option name="dropdown" value="option3"> Option 3 </option>
+            </select>
+
+        <fieldset>
+          <p id="recommend-label"> Would you recommend FCC to a friend?</p> 
+            <input id="definitely" type="radio" name="recommend" value="definitely"><label for="definitely">Definitely</label>
+            <input id="maybe" type="radio" name="recommend" value="maybe"><label for="maybe">Maybe</label>
+            <input id="maybe" type="radio" name="recommend" value="notsure"><label for="notsure">Not Sure</label>
+        </fieldset>
+
+        <fieldset>
+            <p>What would you like to see improved?</p>
+            <input type="checkbox" name="improved" id="frontend" value="frontend"><label for="frontend">Front End</label>
+            <input type="checkbox" name="improved" id="backend" value="backend"><label for="backend">Back End</label>
+            <input type="checkbox" name="improved" id="everything" value="everything"><label for="everything">Everything</label>
+            <input type="checkbox" name="improved" id="nothing" value="nothing"><label for="nothing">Nothing</label>
+        </fieldset>
+
+          <label for="comments" id="textarea-label"">Additional Comments?</label>
+            <textarea id="comments" cols="20" rows="20">
+            </textarea>
+
+            <input id="submit" type="submit">
+
+        </form>
+
+      </section>
+    </main>
+      
+
+  </body>
+</html>
