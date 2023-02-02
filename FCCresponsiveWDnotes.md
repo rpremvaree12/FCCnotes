@@ -29,3 +29,10 @@ for attribute is used to attach a label to an input or nest input inside of labe
 
 CSS
 max-width
+
+
+The "email" type only allows emails with a @ and a . in the domain. The "password" type obscures the input, and warns if the site does not use HTTPS.
+
+The first input element with a type of submit is automatically set to submit its nearest parent form element.
+
+To handle the form submission, after the last fieldset element add an input element with the type attribute set to submit and the value attribute set to Submit.
