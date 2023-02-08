@@ -2,6 +2,7 @@
 const DATAURL = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json";
 const w = "100%";
 const h = 1000;
+const padding = 60;
 
 // add and format h1 tag
 d3.select("body")
@@ -18,14 +19,25 @@ d3.json(DATAURL, (d) => {
     const svg = d3.select("body")
         .append("svg")
         .attr("width", w)
-        .attr("height", h)
-        .style("border","1px solid black")
+        .attr("height", h);
+    
+    // scaling functions for axes and scale to fit chart area
+    const yScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[1])])
+                     .range([h - padding, padding]);
+
+    // set up axes for chart
+    const yAxis = d3.axisLeft(yScale);
+    svg.append("g")
+        .attr("id","y-axis")
+        .attr("transform", "translate(" + padding + ",0)")
+        .call(yAxis)
 
 
     // draw a rect for each item in the dataset
     svg.selectAll("rect")
 
-        // data and enter acts like a forEach
+        // data() and enter() acts like a forEach
 
         .data(dataset)
         .enter()
@@ -35,22 +47,24 @@ d3.json(DATAURL, (d) => {
         // position each rect horizontally based on data point
         .attr("x", (d,i)=>{
             // position each rect based on its index
-            return i*7;
+            return i*7
         })
 
         // make the height of each rect based off the GDP value
         .attr("height", (d,i)=>{
             // GDP value is at 1
-            return d[1];
+            return  d[1] +"px";
         })
-        // .attr("x",0)
+
         .attr("y", (d,i)=>{
             // invert the rect so that rect is "pushed down" relative to the top
-            return h - 0.25 * d[1]
+            return h - 0.25 * d[1];
         })
 
         .attr("fill","#3498DB")
-        .attr("class","bar")        
+        .attr("class","bar")
+        .style("border","1px solid black")
+     
 })
 
 
