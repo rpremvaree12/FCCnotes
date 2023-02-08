@@ -30,7 +30,6 @@ d3.json(DATAURL, (d) => {
         .data(dataset)
         .enter()
         .append("rect")
-        .style("fill","#3498DB")
         .attr("width",5)
 
         // position each rect horizontally based on data point
@@ -49,7 +48,9 @@ d3.json(DATAURL, (d) => {
             // invert the rect so that rect is "pushed down" relative to the top
             return h - 0.25 * d[1]
         })
-        
+
+        .attr("fill","#3498DB")
+        .attr("class","bar")        
 })
 
 
