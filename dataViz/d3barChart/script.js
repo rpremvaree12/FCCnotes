@@ -24,27 +24,27 @@ d3.json(DATAURL, (d) => {
     // scaling functions for axes and scale to fit chart area
     const heightScale = d3.scaleLinear()
                      .domain([0, d3.max(dataset, (d) => d[1])])
-                     .range([0, h]);
+                     .range([0, (h-2*padding)]);
 
-    const yScale = d3.scaleLinear()
+    const yAxisScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, (d)=> d[1])])
-                .range([h,0])
+                .range([h - padding,padding])
 
     const xScale = d3.scaleLinear()
                 .domain([0,dataset.length-1])
-                .range([0,w - padding]);
+                .range([padding, w - padding]);
 
     let datesArray = dataset.map((d) => {
         return new Date(d[0]); 
     })
     const xAxisScale = d3.scaleTime()
                     .domain([d3.min(datesArray),d3.max(datesArray)])
-                    .range([0,w - padding]);
+                    .range([padding,w - padding]);
 
 
 
     // set up axes for chart
-    const yAxis = d3.axisLeft(yScale);
+    const yAxis = d3.axisLeft(yAxisScale);
     svg.append("g")
         .attr("id","y-axis")
         .attr("transform", "translate(" + padding + ",0)")
@@ -81,7 +81,7 @@ d3.json(DATAURL, (d) => {
 
         .attr("y", (d,i)=>{
             // invert the rect so that rect is "pushed down" relative to the top
-            return h - heightScale(d[1]);
+            return yAxisScale(d[1]);
         })
 
         .attr("fill","#3498DB")
