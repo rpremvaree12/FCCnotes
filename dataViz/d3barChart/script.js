@@ -21,6 +21,15 @@ d3.json(DATAURL).then((d)=>{
         .attr("width", w)
         .attr("height", h);
     
+    // define a tool tip as a div
+    let tooltip = d3.select("body")
+        .append("div")
+        .attr("id","tooltip")
+        .style("visibility","visible")
+        .style("width","auto")
+        .style("height","auto")
+        .style("border","2px solid black")
+
     // scaling functions for axes and scale to fit chart area
     const heightScale = d3.scaleLinear()
                      .domain([0, d3.max(dataset, (d) => d[1])])
@@ -90,9 +99,29 @@ d3.json(DATAURL).then((d)=>{
             // invert the rect so that rect is "pushed down" relative to the top
             return yAxisScale(d[1]);
         })
+        .on("mouseover",(event, d)=>{
+            tooltip.transition()
+                .style("visibility","visible")
+            
+            tooltip.text(d[0].slice(0,4)+" Q"+(dataset.indexOf(d)%4+1)+" \n$" + d[1].toLocaleString("en-US")+" Billions")
+            document.querySelector('#tooltip').setAttribute('data-date', d[0])
+
+        })
+        .on("mouseon", (d)=>{
+            tooltip.transition()
+                .style("visibility","visible")
+        })
+        .on("mouseleave", (d)=>{
+            tooltip.transition()
+            .style("visibility","hidden")
+        })
 
         .attr("fill","#3498DB")
         .attr("class","bar")
         .style("border","1px solid black")
+        // control the tooltip visibility
+     
+
+
 
 });
