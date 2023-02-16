@@ -26,8 +26,8 @@ d3.json(DATAURL).then((d)=>{
         .append("div")
         .attr("id","tooltip")
         .style("visibility","visible")
-        .style("width","auto")
-        .style("height","auto")
+        .style("width","50px")
+        .style("height","50px")
         .style("border","2px solid black")
 
     // scaling functions for axes and scale to fit chart area
