@@ -11,8 +11,8 @@ d3.select("body")
   .attr("id","title")
   .style("text-align", "center")
 
-
-d3.json(DATAURL, (d) => {
+  //change for version 7
+d3.json(DATAURL).then((d)=>{
     const dataset = d["data"];
 
     // add svg and bar chart area
@@ -36,7 +36,8 @@ d3.json(DATAURL, (d) => {
 
     let datesArray = dataset.map((d) => {
         return new Date(d[0]); 
-    })
+    });
+
     const xAxisScale = d3.scaleTime()
                     .domain([d3.min(datesArray),d3.max(datesArray)])
                     .range([padding,w - padding]);
@@ -65,6 +66,12 @@ d3.json(DATAURL, (d) => {
         .data(dataset)
         .enter()
         .append("rect")
+        .attr("data-date",(d)=>{
+            return d[0];
+        })
+        .attr("data-gdp",(d)=>{
+            return d[1];
+        })
         .attr("width",(w / dataset.length))
 
         // position each rect horizontally based on data point
@@ -87,7 +94,5 @@ d3.json(DATAURL, (d) => {
         .attr("fill","#3498DB")
         .attr("class","bar")
         .style("border","1px solid black")
-     
-})
 
-
+});
