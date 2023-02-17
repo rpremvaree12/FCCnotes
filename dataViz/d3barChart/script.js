@@ -1,4 +1,4 @@
-
+// resources used: https://d3-graph-gallery.com/graph/barplot_animation_start.html
 const DATAURL = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json";
 const w = 1200;
 const h = 1000;
@@ -99,6 +99,8 @@ d3.json(DATAURL).then((d)=>{
             // invert the rect so that rect is "pushed down" relative to the top
             return yAxisScale(d[1]);
         })
+
+        // control tooltip visiblity using mouseover, mouseon, mouseleave
         .on("mouseover",(event, d)=>{
             tooltip.transition()
                 .style("visibility","visible")
@@ -119,7 +121,9 @@ d3.json(DATAURL).then((d)=>{
         .attr("fill","#3498DB")
         .attr("class","bar")
         .style("border","1px solid black")
-        // control the tooltip visibility
+    
+    // animation of bar chart
+    
      
 
 
