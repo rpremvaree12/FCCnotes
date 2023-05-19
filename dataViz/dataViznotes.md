@@ -203,3 +203,7 @@ scale using max()
   </script>
 </body>
 ```
+
+
+## XML request
+xml to update a page without reloading a page
